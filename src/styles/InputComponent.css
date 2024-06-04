@@ -1,0 +1,50 @@
+.input-component input,
+.input-component textarea {
+  border: 2px solid transparent;
+  background-color: #f3f4f6;
+  padding: 10px;
+  border-radius: 12px;
+  transition: border 0.25s, box-shadow 0.25s;
+}
+
+.input-component textarea {
+  max-width: 100%;
+  min-height: 42px;
+  height: 65px;
+}
+
+.input-component input:focus,
+.input-component textarea:focus {
+  border-color: rgb(59, 131, 246);
+  outline: none;
+  box-shadow: 0px 3px 15px rgba(59, 131, 246, 0.2);
+}
+
+.input-component {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.education-dates {
+  display: flex;
+  gap: 8px;
+}
+
+label > * {
+  font-family: "NotoSans-SemiBold";
+}
+
+.required-value,
+.optional-value {
+  margin-left: 8px;
+  color: rgb(156, 163, 175);
+  font-size: 11px;
+}
+
+.label-text {
+    font-weight: bolder;
+}
