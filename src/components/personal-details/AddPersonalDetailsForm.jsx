@@ -1,8 +1,11 @@
 import InputComponent from "../InputComponent";
 import '../../styles/AddPersonalDetailsForm.css';
 
-// eslint-disable-next-line react/prop-types
-function AddPersonalDetailsForm({ onChange, email, fullName, phoneNumber, address }) {
+function AddPersonalDetailsForm(props) {
+
+  // eslint-disable-next-line react/prop-types
+  const { onChange, email, fullName, phoneNumber, address } = props
+
   return (
     <>
       <form action="#" className="personal-details">
