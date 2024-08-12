@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import InputComponent from "../InputComponent.jsx";
 import "../../styles/AddPersonalDetailsForm.css";
 
-function AddPersonalDetailsForm(
+function AddPersonalDetailsForm({
   onChange,
   fullName,
   email,
   phoneNumber,
-  address
-) {
+  address,
+}) {
   return (
     <>
       <form action="#" className="personal-details">
