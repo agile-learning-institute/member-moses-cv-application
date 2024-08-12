@@ -5,6 +5,7 @@
   padding: 10px;
   border-radius: 12px;
   transition: border 0.25s, box-shadow 0.25s;
+  width: 100%;
 }
 
 .input-component textarea {
@@ -42,9 +43,9 @@ label > * {
 .optional-value {
   margin-left: 8px;
   color: rgb(156, 163, 175);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .label-text {
-    font-weight: bolder;
+  font-weight: bolder;
 }
