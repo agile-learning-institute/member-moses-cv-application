@@ -1,0 +1,15 @@
+.section-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.dates-group {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap;
+}

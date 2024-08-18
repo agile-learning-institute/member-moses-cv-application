@@ -1,27 +1,23 @@
 /* eslint-disable react/prop-types */
-import Buttons from "../Buttons";
-import InputComponent from "../InputComponent";
+import InputComponent from "../InputComponent.jsx";
+import "../../styles/AddExperienceForm.css";
 
-function AddExperienceForm(props) {
-//   const { companyName, positionTitle, location, description, startDate, endDate, id } = props.form;
-const {
-    form: {
-      companyName,
-      positionTitle,
-      location,
-      description,
-      startDate,
-      endDate,
-      id
-    } = {}
-  } = props;
-
-  const { onChange, save, remove } = props;
+function AddExperienceForm({ form = {}, onChange, key }) {
+  const {
+    companyName,
+    positionTitle,
+    location,
+    description,
+    startDate,
+    endDate,
+    id,
+  } = form;
 
   return (
     <form
       className="experience-form section-form"
       id={id}
+      key={key}
       data-array-name="experiences"
       onSubmit={(e) => e.preventDefault()}
     >
@@ -85,7 +81,6 @@ const {
         data-key="description"
         optional
       />
-      <Buttons save={save} remove={remove} />
     </form>
   );
 }

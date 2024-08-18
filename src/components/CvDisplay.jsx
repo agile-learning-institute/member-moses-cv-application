@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import "../styles/CvDisplay.css";
+import CvExperience from "./experiences/CvExperience.jsx";
 import CvPersonalDetails from "./personal-details/CvPersonalDetails.jsx";
 
-function CvDisplay({ personalInfo }) {
+function CvDisplay({ personalInfo, experience }) {
   return (
     <div className="resume-container">
       <div className="resume">
@@ -13,8 +14,11 @@ function CvDisplay({ personalInfo }) {
           phoneNumber={personalInfo.phoneNumber}
           address={personalInfo.address}
         />
-        <div>
-          <p>Experience</p>
+        <div className="resume-section">
+          <h3 className="header-text">Work Experience</h3>
+          {experience.map((form) => (
+            <CvExperience key={form.id} props={form} />
+          ))}
           <p>Education</p>
         </div>
       </div>
