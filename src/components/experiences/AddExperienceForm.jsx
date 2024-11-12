@@ -2,7 +2,7 @@
 import InputComponent from "../InputComponent.jsx";
 import "../../styles/AddExperienceForm.css";
 
-function AddExperienceForm({ form = {}, onChange, key }) {
+function AddExperienceForm({ form, onChange }) {
   const {
     companyName,
     positionTitle,
@@ -17,7 +17,6 @@ function AddExperienceForm({ form = {}, onChange, key }) {
     <form
       className="experience-form section-form"
       id={id}
-      key={key}
       data-array-name="experiences"
       onSubmit={(e) => e.preventDefault()}
     >
@@ -28,7 +27,7 @@ function AddExperienceForm({ form = {}, onChange, key }) {
         placeholder="Enter Company Name"
         value={companyName}
         onChange={onChange}
-        data-key="companyName"
+        dataId="companyName"
         required
       />
       <InputComponent
@@ -38,7 +37,7 @@ function AddExperienceForm({ form = {}, onChange, key }) {
         placeholder="Enter Position Title"
         value={positionTitle}
         onChange={onChange}
-        data-key="positionTitle"
+        dataId="positionTitle"
         required
       />
       <div className="dates-group">
@@ -49,7 +48,7 @@ function AddExperienceForm({ form = {}, onChange, key }) {
           placeholder="Enter Start Date"
           value={startDate}
           onChange={onChange}
-          data-key="startDate"
+          dataId="startDate"
         />
         <InputComponent
           type="text"
@@ -58,7 +57,7 @@ function AddExperienceForm({ form = {}, onChange, key }) {
           placeholder="Enter End Date"
           value={endDate}
           onChange={onChange}
-          data-key="endDate"
+          dataId="endDate"
         />
       </div>
       <InputComponent
@@ -68,7 +67,7 @@ function AddExperienceForm({ form = {}, onChange, key }) {
         placeholder="Enter Location"
         value={location}
         onChange={onChange}
-        data-key="location"
+        dataId="location"
         optional
       />
       <InputComponent
@@ -78,7 +77,7 @@ function AddExperienceForm({ form = {}, onChange, key }) {
         placeholder="Enter Description"
         value={description}
         onChange={onChange}
-        data-key="description"
+        dataId="description"
         optional
       />
     </form>

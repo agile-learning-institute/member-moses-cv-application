@@ -4,12 +4,14 @@ import AddPersonalDetailsForm from "./components/personal-details/AddPersonalDet
 import dataTemplate from "./dataTemplate";
 import "./styles/App.css";
 import AddExperienceForm from "./components/experiences/AddExperienceForm";
+import AddEducationForm from "./components/education-details/AddEducationForm";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(dataTemplate.personalInfo);
   const [experience, setExperience] = useState(
     dataTemplate.sections.experiences
   );
+  const [education, setEducation] = useState(dataTemplate.sections.educations);
 
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
@@ -18,9 +20,18 @@ function App() {
 
   function handleExperienceChange(e) {
     const { key } = e.target.dataset;
-    experience.map((form) => {
-      setExperience({ ...form, [key]: e.target.value });
-    });
+    const updatedExperience = experience.map((form) =>
+      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
+    );
+    setExperience(updatedExperience);
+  }
+
+  function handleEducationChange(e) {
+    const { key } = e.target.dataset;
+    const updatedEducation = education.map((form) =>
+      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
+    );
+    setEducation(updatedEducation);
   }
 
   return (
@@ -38,13 +49,24 @@ function App() {
             <AddExperienceForm
               key={form.id}
               form={form}
-              onChange={handleExperienceChange}
+              onChange={(e) => handleExperienceChange(e)}
+            />
+          ))}
+          {education.map((form) => (
+            <AddEducationForm
+              key={form.id}
+              form={form}
+              onChange={(e) => handleEducationChange(e)}
             />
           ))}
         </div>
       </div>
 
-      <CvDisplay personalInfo={personalInfo} experience={experience} />
+      <CvDisplay
+        personalInfo={personalInfo}
+        experience={experience}
+        education={education}
+      />
     </div>
   );
 }

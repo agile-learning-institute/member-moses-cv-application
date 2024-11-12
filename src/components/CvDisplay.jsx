@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import "../styles/CvDisplay.css";
+import CvEducation from "./education-details/CvEducation.jsx";
 import CvExperience from "./experiences/CvExperience.jsx";
 import CvPersonalDetails from "./personal-details/CvPersonalDetails.jsx";
 
-function CvDisplay({ personalInfo, experience }) {
+function CvDisplay({ personalInfo, experience, education }) {
   return (
     <div className="resume-container">
       <div className="resume">
@@ -19,7 +20,10 @@ function CvDisplay({ personalInfo, experience }) {
           {experience.map((form) => (
             <CvExperience key={form.id} props={form} />
           ))}
-          <p>Education</p>
+          <h3 className="header-text">Education</h3>
+          {education.map((form) => (
+            <CvEducation key={form.id} props={form} />
+          ))}
         </div>
       </div>
     </div>

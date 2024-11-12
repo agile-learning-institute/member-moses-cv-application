@@ -20,7 +20,7 @@ function AddPersonalDetailsForm({
           placeholder="First and last name"
           value={fullName}
           onChange={onChange}
-          data-key="fullName"
+          dataId="fullName"
           required
         />
         <InputComponent
@@ -30,7 +30,7 @@ function AddPersonalDetailsForm({
           placeholder="Enter email"
           value={email}
           onChange={onChange}
-          data-key="email"
+          dataId="email"
           required
         />
         <InputComponent
@@ -40,7 +40,7 @@ function AddPersonalDetailsForm({
           placeholder="Enter phone number"
           value={phoneNumber}
           onChange={onChange}
-          data-key="phoneNumber"
+          dataId="phoneNumber"
           optional
         />
         <InputComponent
@@ -50,7 +50,7 @@ function AddPersonalDetailsForm({
           placeholder="City, Country"
           value={address}
           onChange={onChange}
-          data-key="address"
+          dataId="address"
           required
         />
       </form>

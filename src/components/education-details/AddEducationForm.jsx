@@ -1,21 +1,8 @@
 /* eslint-disable react/prop-types */
-import Buttons from "../Buttons";
 import InputComponent from "../InputComponent";
 
-function AddEducationForm(props) {
-//   const { degree, schoolName, location, startDate, endDate, id } = props.form;
-const {
-    form: {
-      degree,
-      schoolName,
-      location,
-      startDate,
-      endDate,
-      id
-    } = {}
-  } = props;
-
-  const { onChange, save, remove } = props;
+function AddEducationForm({ form, onChange }) {
+  const { degree, schoolName, location, startDate, endDate, id } = form;
 
   return (
     <form
@@ -31,7 +18,7 @@ const {
         placeholder="Enter school / university"
         value={schoolName}
         onChange={onChange}
-        data-key="schoolName"
+        dataId="schoolName"
         required
       />
       <InputComponent
@@ -41,7 +28,7 @@ const {
         placeholder="Enter Degree / Field Of Study"
         value={degree}
         onChange={onChange}
-        data-key="degree"
+        dataId="degree"
         required
       />
       <div className="dates-group">
@@ -52,7 +39,7 @@ const {
           placeholder="Enter Start Date"
           value={startDate}
           onChange={onChange}
-          data-key="startDate"
+          dataId="startDate"
         />
         <InputComponent
           type="text"
@@ -61,7 +48,7 @@ const {
           placeholder="Enter End Date"
           value={endDate}
           onChange={onChange}
-          data-key="endDate"
+          dataId="endDate"
         />
       </div>
       <InputComponent
@@ -71,11 +58,9 @@ const {
         placeholder="Enter Location"
         value={location}
         onChange={onChange}
-        data-key="location"
+        dataId="location"
         optional
       />
-
-      <Buttons save={save} remove={remove} />
     </form>
   );
 }
