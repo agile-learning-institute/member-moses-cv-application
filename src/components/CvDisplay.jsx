@@ -6,8 +6,15 @@ import CvExperience from "./experiences/CvExperience.jsx";
 import CvPersonalDetails from "./personal-details/CvPersonalDetails.jsx";
 
 function CvDisplay({ personalInfo, experience, education }) {
+  const printResume = () => {
+    window.print();
+  };
+
   return (
     <div className="resume-container">
+      <button onClick={printResume} type="button" className="download-button">
+        <i className="fa fa-print" aria-hidden="true"></i>. Print
+      </button>
       <div className="resume">
         <CvPersonalDetails
           fullName={personalInfo.fullName}

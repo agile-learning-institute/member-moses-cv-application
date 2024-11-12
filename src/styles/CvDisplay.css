@@ -43,3 +43,46 @@ button {
   background-color: var(--section-resume-bg);
   color: var(--resume-accent);
 }
+
+.download-button {
+  padding: 8px 16px;
+  margin: 10px;
+  font-weight: 600;
+  font-size: larger;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  border: none;
+  color: var(--resume-accent);
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .resume,
+  .resume * {
+    visibility: visible;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  .resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  @page {
+    size: auto;
+    margin: 0;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}
