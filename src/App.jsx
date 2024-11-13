@@ -1,20 +1,19 @@
 import { useState } from "react";
 import CvDisplay from "./components/CvDisplay";
-// import AddPersonalDetailsForm from "./components/personal-details/AddPersonalDetailsForm";
 import dataTemplate from "./dataTemplate";
 import "./styles/App.css";
-// import AddExperienceForm from "./components/experiences/AddExperienceForm";
-// import AddEducationForm from "./components/education-details/AddEducationForm";
 import ExperienceSection from "./components/experiences/ExperienceSection";
 import PersonalDetailsSection from "./components/personal-details/PersonalDetailsSection";
+import EducationSection from "./components/education-details/EducationSection";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(dataTemplate.personalInfo);
   const [experience, setExperience] = useState(
     dataTemplate.sections.experiences
   );
-  const [sectionOpen, setSectionOpen] = useState("Personal Info");
-  // const [education, setEducation] = useState(dataTemplate.sections.educations);
+  const [sectionOpen, setSectionOpen] = useState("Experience"); //"Personal Info" "Education" "Experience"
+  const [sections, setSections] = useState(dataTemplate.sections);
+  const [education, setEducation] = useState(dataTemplate.sections.educations);
 
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
@@ -29,15 +28,33 @@ function App() {
     setExperience(updatedExperience);
   }
 
-  const setOpen = (sectionName) => setSectionOpen(sectionName);
+  function toggleValue(e, key) {
+    const sectionForm = e.target.closest(".section-form");
+    const { id } = sectionForm;
+    const { arrayName } = sectionForm.dataset;
+    const section = sections[arrayName];
+    setSections({
+      ...sections,
+      [arrayName]: section.map((form) => {
+        if (form.id === id) {
+          form[key] = !form[key];
+        }
 
-  // function handleEducationChange(e) {
-  //   const { key } = e.target.dataset;
-  //   const updatedEducation = education.map((form) =>
-  //     form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
-  //   );
-  //   setEducation(updatedEducation);
-  // }
+        return form;
+      }),
+    });
+  }
+
+  const setOpen = (sectionName) => setSectionOpen(sectionName);
+  const toggleCollapse = (e) => toggleValue(e, "isCollapsed");
+
+  function handleEducationChange(e) {
+    const { key } = e.target.dataset;
+    const updatedEducation = education.map((form) =>
+      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
+    );
+    setEducation(updatedEducation);
+  }
 
   return (
     <div className="app">
@@ -49,33 +66,29 @@ function App() {
             isOpen={sectionOpen === "Personal Info"}
             setOpen={setOpen}
           />
-          {/* {experience.map((form) => (
-            <AddExperienceForm
-              key={form.id}
-              form={form}
-              onChange={(e) => handleExperienceChange(e)}
-            />
-          ))} */}
           <ExperienceSection
             experience={experience}
             onChange={(e) => handleExperienceChange(e)}
             isOpen={sectionOpen === "Experience"}
             setOpen={setOpen}
+            onClick={() => {}}
+            toggleCollapse={toggleCollapse}
           />
-          {/* {education.map((form) => (
-            <AddEducationForm
-              key={form.id}
-              form={form}
-              onChange={(e) => handleEducationChange(e)}
-            />
-          ))} */}
+          <EducationSection
+            education={education}
+            onChange={(e) => handleEducationChange(e)}
+            isOpen={sectionOpen === "Education"}
+            setOpen={setOpen}
+            onClick={() => {}}
+            toggleCollapse={toggleCollapse}
+          />
         </div>
       </div>
 
       <CvDisplay
         personalInfo={personalInfo}
         experience={experience}
-        // education={education}
+        education={education}
       />
     </div>
   );

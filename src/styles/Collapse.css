@@ -1,0 +1,19 @@
+.collapsed-form {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  border: none;
+  border-top: 5px solid rgb(243, 244, 246);
+  padding: 12px 14px 12px 24px;
+  width: 100%;
+  background-color: white;
+}
+
+.collapsed-form:last-of-type {
+  border-bottom: 5px solid rgb(243, 244, 246);
+}
+
+.collapsed-form-title {
+  font-family: "NotoSans-semibold";
+  font-size: 17px;
+}
