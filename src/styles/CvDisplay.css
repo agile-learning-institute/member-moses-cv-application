@@ -69,7 +69,7 @@ button {
   .resume * {
     visibility: visible;
     -webkit-print-color-adjust: exact;
-    color-adjust: exact;
+    print-color-adjust: exact;
   }
   .resume {
     position: absolute;

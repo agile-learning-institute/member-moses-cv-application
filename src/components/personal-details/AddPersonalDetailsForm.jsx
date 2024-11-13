@@ -12,7 +12,6 @@ function AddPersonalDetailsForm({
   return (
     <>
       <form action="#" className="personal-details">
-        <h2>Personal Details</h2>
         <InputComponent
           type="text"
           id="full-name"

@@ -1,17 +1,20 @@
 import { useState } from "react";
 import CvDisplay from "./components/CvDisplay";
-import AddPersonalDetailsForm from "./components/personal-details/AddPersonalDetailsForm";
+// import AddPersonalDetailsForm from "./components/personal-details/AddPersonalDetailsForm";
 import dataTemplate from "./dataTemplate";
 import "./styles/App.css";
-import AddExperienceForm from "./components/experiences/AddExperienceForm";
-import AddEducationForm from "./components/education-details/AddEducationForm";
+// import AddExperienceForm from "./components/experiences/AddExperienceForm";
+// import AddEducationForm from "./components/education-details/AddEducationForm";
+import ExperienceSection from "./components/experiences/ExperienceSection";
+import PersonalDetailsSection from "./components/personal-details/PersonalDetailsSection";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(dataTemplate.personalInfo);
   const [experience, setExperience] = useState(
     dataTemplate.sections.experiences
   );
-  const [education, setEducation] = useState(dataTemplate.sections.educations);
+  const [sectionOpen, setSectionOpen] = useState("Personal Info");
+  // const [education, setEducation] = useState(dataTemplate.sections.educations);
 
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
@@ -26,46 +29,53 @@ function App() {
     setExperience(updatedExperience);
   }
 
-  function handleEducationChange(e) {
-    const { key } = e.target.dataset;
-    const updatedEducation = education.map((form) =>
-      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
-    );
-    setEducation(updatedEducation);
-  }
+  const setOpen = (sectionName) => setSectionOpen(sectionName);
+
+  // function handleEducationChange(e) {
+  //   const { key } = e.target.dataset;
+  //   const updatedEducation = education.map((form) =>
+  //     form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
+  //   );
+  //   setEducation(updatedEducation);
+  // }
 
   return (
     <div className="app">
       <div className="edit-side">
         <div className="form-container">
-          <AddPersonalDetailsForm
+          <PersonalDetailsSection
             onChange={handlePersonalInfoChange}
-            fullName={personalInfo.fullName}
-            email={personalInfo.email}
-            phoneNumber={personalInfo.phoneNumber}
-            address={personalInfo.address}
+            personalInfo={personalInfo}
+            isOpen={sectionOpen === "Personal Info"}
+            setOpen={setOpen}
           />
-          {experience.map((form) => (
+          {/* {experience.map((form) => (
             <AddExperienceForm
               key={form.id}
               form={form}
               onChange={(e) => handleExperienceChange(e)}
             />
-          ))}
-          {education.map((form) => (
+          ))} */}
+          <ExperienceSection
+            experience={experience}
+            onChange={(e) => handleExperienceChange(e)}
+            isOpen={sectionOpen === "Experience"}
+            setOpen={setOpen}
+          />
+          {/* {education.map((form) => (
             <AddEducationForm
               key={form.id}
               form={form}
               onChange={(e) => handleEducationChange(e)}
             />
-          ))}
+          ))} */}
         </div>
       </div>
 
       <CvDisplay
         personalInfo={personalInfo}
         experience={experience}
-        education={education}
+        // education={education}
       />
     </div>
   );
