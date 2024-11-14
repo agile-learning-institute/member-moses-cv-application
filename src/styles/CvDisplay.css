@@ -86,3 +86,27 @@ button {
     padding: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .resume-container {
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+  }
+
+  .resume {
+    grid-template-rows: auto 1fr;
+    padding: 16px;
+  }
+
+  .resume-section {
+    padding: 0 16px;
+    margin-top: 20px;
+  }
+
+  .download-button {
+    position: static;
+    margin: 10px auto;
+    display: block;
+  }
+}

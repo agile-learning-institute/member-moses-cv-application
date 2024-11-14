@@ -27,3 +27,25 @@ form {
   max-width: 750px;
   flex-grow: 1;
 }
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .edit-side {
+    order: 1;
+    width: 100%;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  .resume-container {
+    order: 2;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
