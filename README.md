@@ -4,7 +4,7 @@ This project is a CV application built using React. It allows users to create an
 
 ## Table of Contents
 
-- [Installation](#Setup & Install)
+- [Installation](#setup--install)
 - [Running](#Run)
 - [Features](#features)
 - [Contributing](#contributing)
