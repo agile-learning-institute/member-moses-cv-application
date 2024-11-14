@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import CvDisplay from "./components/CvDisplay";
 import dataTemplate from "./dataTemplate";
 import "./styles/App.css";
@@ -90,10 +91,70 @@ function App() {
 
   function handleSave(e) {
     const formId = e.target.closest(".section-form").id;
-    const updatedExperience = experience.map((form) =>
-      form.id === formId ? { ...form, isCollapsed: true } : form
-    );
-    setExperience(updatedExperience);
+    const isNewExperience = !experience.some((form) => form.id === formId);
+    const isNewEducation = !education.some((form) => form.id === formId);
+
+    if (isNewExperience) {
+      const newForm = {
+        id: formId,
+        companyName: "",
+        positionTitle: "",
+        location: "",
+        description: "",
+        startDate: "",
+        endDate: "",
+        isCollapsed: true,
+      };
+      setExperience([...experience, newForm]);
+    } else if (isNewEducation) {
+      const newForm = {
+        id: formId,
+        degree: "",
+        schoolName: "",
+        location: "",
+        startDate: "",
+        endDate: "",
+        isCollapsed: true,
+      };
+      setEducation([...education, newForm]);
+    } else {
+      const updatedExperience = experience.map((form) =>
+        form.id === formId ? { ...form, isCollapsed: true } : form
+      );
+      setExperience(updatedExperience);
+
+      const updatedEducation = education.map((form) =>
+        form.id === formId ? { ...form, isCollapsed: true } : form
+      );
+      setEducation(updatedEducation);
+    }
+  }
+
+  function handleAddExperience() {
+    const newForm = {
+      id: uuid(),
+      companyName: "",
+      positionTitle: "",
+      location: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+      isCollapsed: false,
+    };
+    setExperience([...experience, newForm]);
+  }
+
+  function handleAddEducation() {
+    const newForm = {
+      id: uuid(),
+      degree: "",
+      schoolName: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      isCollapsed: false,
+    };
+    setEducation([...education, newForm]);
   }
 
   return (
@@ -111,7 +172,7 @@ function App() {
             onChange={(e) => handleExperienceChange(e)}
             isOpen={sectionOpen === "Experience"}
             setOpen={setOpen}
-            onClick={() => {}}
+            onClick={handleAddExperience}
             toggleCollapse={toggleCollapse}
             onRemove={removeForm}
             onSave={handleSave}
@@ -121,9 +182,10 @@ function App() {
             onChange={(e) => handleEducationChange(e)}
             isOpen={sectionOpen === "Education"}
             setOpen={setOpen}
-            onClick={() => {}}
+            onClick={handleAddEducation}
             toggleCollapse={toggleCollapse}
             onRemove={removeForm}
+            onSave={handleSave}
           />
         </div>
       </div>
