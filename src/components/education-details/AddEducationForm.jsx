@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
+import Buttons from "../Buttons";
 import InputComponent from "../InputComponent";
 
-function AddEducationForm({ form, onChange, arrayName }) {
+function AddEducationForm({ form, onChange, arrayName, save, remove }) {
   const { degree, schoolName, location, startDate, endDate, id } = form;
 
   return (
@@ -61,6 +62,7 @@ function AddEducationForm({ form, onChange, arrayName }) {
         dataId="location"
         optional
       />
+      <Buttons save={save} remove={remove} />
     </form>
   );
 }

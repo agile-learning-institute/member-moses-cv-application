@@ -15,6 +15,9 @@ function App() {
   const [sections, setSections] = useState(dataTemplate.sections);
   const [education, setEducation] = useState(dataTemplate.sections.educations);
 
+  const setOpen = (sectionName) => setSectionOpen(sectionName);
+  const toggleCollapse = (e) => toggleValue(e, "isCollapsed");
+
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
     setPersonalInfo({ ...personalInfo, [key]: e.target.value });
@@ -26,6 +29,27 @@ function App() {
       form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
     );
     setExperience(updatedExperience);
+  }
+
+  function handleEducationChange(e) {
+    const { key } = e.target.dataset;
+    const updatedEducation = education.map((form) =>
+      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
+    );
+    setEducation(updatedEducation);
+  }
+
+  function removeForm(e) {
+    const form = e.target.closest(".section-form");
+    const { arrayName } = form.dataset;
+    const section = sections[arrayName];
+
+    setSections({
+      ...sections,
+      [arrayName]: section.filter((item) => item.id !== form.id),
+    });
+
+    toggleValue(e, "isCollapsed");
   }
 
   function toggleValue(e, key) {
@@ -45,17 +69,6 @@ function App() {
     });
   }
 
-  const setOpen = (sectionName) => setSectionOpen(sectionName);
-  const toggleCollapse = (e) => toggleValue(e, "isCollapsed");
-
-  function handleEducationChange(e) {
-    const { key } = e.target.dataset;
-    const updatedEducation = education.map((form) =>
-      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
-    );
-    setEducation(updatedEducation);
-  }
-
   return (
     <div className="app">
       <div className="edit-side">
@@ -73,6 +86,7 @@ function App() {
             setOpen={setOpen}
             onClick={() => {}}
             toggleCollapse={toggleCollapse}
+            onRemove={removeForm}
           />
           <EducationSection
             education={education}
@@ -81,6 +95,7 @@ function App() {
             setOpen={setOpen}
             onClick={() => {}}
             toggleCollapse={toggleCollapse}
+            onRemove={removeForm}
           />
         </div>
       </div>

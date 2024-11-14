@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import InputComponent from "../InputComponent.jsx";
 import "../../styles/AddExperienceForm.css";
+import Buttons from "../Buttons.jsx";
 
-function AddExperienceForm({ form, onChange, arrayName }) {
+function AddExperienceForm({ form, onChange, arrayName, save, remove }) {
   const {
     companyName,
     positionTitle,
@@ -80,6 +81,7 @@ function AddExperienceForm({ form, onChange, arrayName }) {
         dataId="description"
         optional
       />
+      <Buttons save={save} remove={remove} />
     </form>
   );
 }

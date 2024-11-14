@@ -11,6 +11,7 @@ function EducationSection({
   onChange,
   onClick,
   toggleCollapse,
+  onRemove,
 }) {
   return (
     <div className="add-education-section section">
@@ -37,6 +38,8 @@ function EducationSection({
               form={form}
               onChange={onChange}
               arrayName="educations"
+              save={toggleCollapse}
+              remove={onRemove}
             />
           )
         )}
