@@ -81,15 +81,7 @@ function AddExperienceForm({ form, onChange, arrayName, save, remove }) {
         dataId="description"
         optional
       />
-      <Buttons
-        save={() =>
-          save(
-            { target: { closest: () => ({ id, dataset: { arrayName } }) } },
-            "isCollapsed"
-          )
-        }
-        remove={remove}
-      />
+      <Buttons save={save} remove={remove} />
     </form>
   );
 }

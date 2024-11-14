@@ -72,6 +72,28 @@ function App() {
         return form;
       }),
     });
+
+    if (arrayName === "experiences") {
+      setExperience(
+        experience.map((form) =>
+          form.id === id ? { ...form, [key]: !form[key] } : form
+        )
+      );
+    } else if (arrayName === "educations") {
+      setEducation(
+        education.map((form) =>
+          form.id === id ? { ...form, [key]: !form[key] } : form
+        )
+      );
+    }
+  }
+
+  function handleSave(e) {
+    const formId = e.target.closest(".section-form").id;
+    const updatedExperience = experience.map((form) =>
+      form.id === formId ? { ...form, isCollapsed: true } : form
+    );
+    setExperience(updatedExperience);
   }
 
   return (
@@ -92,6 +114,7 @@ function App() {
             onClick={() => {}}
             toggleCollapse={toggleCollapse}
             onRemove={removeForm}
+            onSave={handleSave}
           />
           <EducationSection
             education={education}

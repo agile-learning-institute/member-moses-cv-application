@@ -12,6 +12,7 @@ function ExperienceSection({
   onClick,
   toggleCollapse,
   onRemove,
+  onSave,
 }) {
   return (
     <div className="add-experience-section section">
@@ -38,7 +39,7 @@ function ExperienceSection({
               form={form}
               onChange={onChange}
               arrayName="experiences"
-              save={toggleCollapse}
+              save={onSave}
               remove={onRemove}
             />
           )
