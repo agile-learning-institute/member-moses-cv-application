@@ -3,8 +3,8 @@ import { v4 as uuid } from "uuid";
 const dataTemplate = {
   personalInfo: {
     fullName: "Olara Moses",
-    email: "wodpachua@gmail.com",
-    phoneNumber: "+256 781 637 392",
+    email: "oh-yes-he-cares@gmail.com",
+    phoneNumber: "+256 777 777 777",
     address: "Kampala, Uganda",
   },
 
@@ -22,7 +22,7 @@ const dataTemplate = {
       },
       {
         degree: "Bachelors of Science Software Engineering",
-        schoolName: "Uganda Technology & Management University",
+        schoolName: "Self Learning University",
         location: "Kampala, Uganda",
         startDate: "01/2024",
         endDate: "08/2026",
@@ -34,22 +34,22 @@ const dataTemplate = {
 
     experiences: [
       {
-        companyName: "OpenMRS.",
-        positionTitle: "Volunteer Software Developer",
+        companyName: "Ultra Mine Inc.",
+        positionTitle: "Software Developer",
         location: "USA",
         description:
-          "Code contributions | Involved in Global Events planning | OpenMRS Academy",
-        startDate: "06/2023",
+          "Developed and maintained web applications using JavaScript, React, and Node.js | Collaborated with cross-functional teams to define, design, and ship new features | Implemented RESTful APIs and integrated third-party services | Conducted code reviews and provided mentorship to junior developers",
+        startDate: "06/2015",
         endDate: "present",
         isCollapsed: true,
         id: uuid(),
       },
       {
-        companyName: "Dynamic Land Projects",
-        positionTitle: "Land Surveyor",
+        companyName: "King James Technologies",
+        positionTitle: "CEO",
         location: "Kampala, Uganda",
         description:
-          "Land surveys | Data processing | Topographical Mapping | GIS mapping | Title Processing | Boundary Openings | Subdivision Surveys",
+          "Founded and managed a software development company | Led a team of developers to build web and mobile applications | Developed business strategies and managed client relationships | Conducted market research and identified new business opportunities",
         startDate: "04/2016",
         endDate: "02/2019",
         isCollapsed: true,

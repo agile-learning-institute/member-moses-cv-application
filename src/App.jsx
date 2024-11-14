@@ -12,7 +12,7 @@ function App() {
   const [experience, setExperience] = useState(
     dataTemplate.sections.experiences
   );
-  const [sectionOpen, setSectionOpen] = useState("Experience"); //"Personal Info" "Education" "Experience"
+  const [sectionOpen, setSectionOpen] = useState("Personal Info");
   const [sections, setSections] = useState(dataTemplate.sections);
   const [education, setEducation] = useState(dataTemplate.sections.educations);
 
@@ -24,22 +24,21 @@ function App() {
     setPersonalInfo({ ...personalInfo, [key]: e.target.value });
   }
 
-  function handleExperienceChange(e) {
+  function handleChange(e, setState, state) {
     const { key } = e.target.dataset;
     const formId = e.target.closest(".section-form").id;
-    const updatedExperience = experience.map((form) =>
+    const updatedState = state.map((form) =>
       form.id === formId ? { ...form, [key]: e.target.value } : form
     );
-    setExperience(updatedExperience);
+    setState(updatedState);
+  }
+
+  function handleExperienceChange(e) {
+    handleChange(e, setExperience, experience);
   }
 
   function handleEducationChange(e) {
-    const { key } = e.target.dataset;
-    const formId = e.target.closest(".section-form").id;
-    const updatedEducation = education.map((form) =>
-      form.id === formId ? { ...form, [key]: e.target.value } : form
-    );
-    setEducation(updatedEducation);
+    handleChange(e, setEducation, education);
   }
 
   function removeForm(e) {
@@ -91,10 +90,9 @@ function App() {
 
   function handleSave(e) {
     const formId = e.target.closest(".section-form").id;
-    const isNewExperience = !experience.some((form) => form.id === formId);
-    const isNewEducation = !education.some((form) => form.id === formId);
+    const isNewForm = (array) => !array.some((form) => form.id === formId);
 
-    if (isNewExperience) {
+    if (isNewForm(experience)) {
       const newForm = {
         id: formId,
         companyName: "",
@@ -106,7 +104,7 @@ function App() {
         isCollapsed: true,
       };
       setExperience([...experience, newForm]);
-    } else if (isNewEducation) {
+    } else if (isNewForm(education)) {
       const newForm = {
         id: formId,
         degree: "",
@@ -118,43 +116,41 @@ function App() {
       };
       setEducation([...education, newForm]);
     } else {
-      const updatedExperience = experience.map((form) =>
-        form.id === formId ? { ...form, isCollapsed: true } : form
-      );
-      setExperience(updatedExperience);
-
-      const updatedEducation = education.map((form) =>
-        form.id === formId ? { ...form, isCollapsed: true } : form
-      );
-      setEducation(updatedEducation);
+      const updateForm = (array, setArray) => {
+        const updatedArray = array.map((form) =>
+          form.id === formId ? { ...form, isCollapsed: true } : form
+        );
+        setArray(updatedArray);
+      };
+      updateForm(experience, setExperience);
+      updateForm(education, setEducation);
     }
   }
 
+  function handleAddForm(setState, state, newFormTemplate) {
+    const newForm = { ...newFormTemplate, id: uuid(), isCollapsed: false };
+    setState([...state, newForm]);
+  }
+
   function handleAddExperience() {
-    const newForm = {
-      id: uuid(),
+    handleAddForm(setExperience, experience, {
       companyName: "",
       positionTitle: "",
       location: "",
       description: "",
       startDate: "",
       endDate: "",
-      isCollapsed: false,
-    };
-    setExperience([...experience, newForm]);
+    });
   }
 
   function handleAddEducation() {
-    const newForm = {
-      id: uuid(),
+    handleAddForm(setEducation, education, {
       degree: "",
       schoolName: "",
       location: "",
       startDate: "",
       endDate: "",
-      isCollapsed: false,
-    };
-    setEducation([...education, newForm]);
+    });
   }
 
   return (
