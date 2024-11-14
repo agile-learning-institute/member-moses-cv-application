@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import CvDisplay from "./components/CvDisplay";
 import dataTemplate from "./dataTemplate";
@@ -8,13 +8,32 @@ import PersonalDetailsSection from "./components/personal-details/PersonalDetail
 import EducationSection from "./components/education-details/EducationSection";
 
 function App() {
-  const [personalInfo, setPersonalInfo] = useState(dataTemplate.personalInfo);
-  const [experience, setExperience] = useState(
-    dataTemplate.sections.experiences
-  );
+  const [personalInfo, setPersonalInfo] = useState(() => {
+    const saved = localStorage.getItem("personalInfo");
+    return saved ? JSON.parse(saved) : dataTemplate.personalInfo;
+  });
+  const [experience, setExperience] = useState(() => {
+    const saved = localStorage.getItem("experience");
+    return saved ? JSON.parse(saved) : dataTemplate.sections.experiences;
+  });
   const [sectionOpen, setSectionOpen] = useState("Personal Info");
   const [sections, setSections] = useState(dataTemplate.sections);
-  const [education, setEducation] = useState(dataTemplate.sections.educations);
+  const [education, setEducation] = useState(() => {
+    const saved = localStorage.getItem("education");
+    return saved ? JSON.parse(saved) : dataTemplate.sections.educations;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("personalInfo", JSON.stringify(personalInfo));
+  }, [personalInfo]);
+
+  useEffect(() => {
+    localStorage.setItem("experience", JSON.stringify(experience));
+  }, [experience]);
+
+  useEffect(() => {
+    localStorage.setItem("education", JSON.stringify(education));
+  }, [education]);
 
   const setOpen = (sectionName) => setSectionOpen(sectionName);
   const toggleCollapse = (e) => toggleValue(e, "isCollapsed");
