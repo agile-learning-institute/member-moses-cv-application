@@ -25,16 +25,18 @@ function App() {
 
   function handleExperienceChange(e) {
     const { key } = e.target.dataset;
+    const formId = e.target.closest(".section-form").id;
     const updatedExperience = experience.map((form) =>
-      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
+      form.id === formId ? { ...form, [key]: e.target.value } : form
     );
     setExperience(updatedExperience);
   }
 
   function handleEducationChange(e) {
     const { key } = e.target.dataset;
+    const formId = e.target.closest(".section-form").id;
     const updatedEducation = education.map((form) =>
-      form.id === e.target.form.id ? { ...form, [key]: e.target.value } : form
+      form.id === formId ? { ...form, [key]: e.target.value } : form
     );
     setEducation(updatedEducation);
   }
@@ -49,7 +51,11 @@ function App() {
       [arrayName]: section.filter((item) => item.id !== form.id),
     });
 
-    toggleValue(e, "isCollapsed");
+    if (arrayName === "experiences") {
+      setExperience(experience.filter((item) => item.id !== form.id));
+    } else if (arrayName === "educations") {
+      setEducation(education.filter((item) => item.id !== form.id));
+    }
   }
 
   function toggleValue(e, key) {
@@ -63,7 +69,6 @@ function App() {
         if (form.id === id) {
           form[key] = !form[key];
         }
-
         return form;
       }),
     });

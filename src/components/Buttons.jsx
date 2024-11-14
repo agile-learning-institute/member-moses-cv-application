@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import "../styles/Buttons.css";
 
-// eslint-disable-next-line react/prop-types
 function Buttons({ save, remove }) {
   return (
     <div className="buttons">
@@ -8,7 +8,7 @@ function Buttons({ save, remove }) {
         <i className="fa-solid fa-trash" />
         Remove
       </button>
-      <button className="save" onClick={save} type="submit">
+      <button className="save" onClick={save} type="button">
         Save
       </button>
     </div>
