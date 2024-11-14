@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import InputComponent from "../InputComponent";
 
-function AddEducationForm({ form, onChange }) {
+function AddEducationForm({ form, onChange, arrayName }) {
   const { degree, schoolName, location, startDate, endDate, id } = form;
 
   return (
     <form
       className="education-form section-form"
       id={id}
-      data-array-name="educations"
+      data-array-name={arrayName}
       onSubmit={(e) => e.preventDefault()}
     >
       <InputComponent

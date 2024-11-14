@@ -29,9 +29,15 @@ function ExperienceSection({
               key={form.id}
               form={form}
               title="positionTitle"
+              arrayName="experiences"
             />
           ) : (
-            <AddExperienceForm key={form.id} form={form} onChange={onChange} />
+            <AddExperienceForm
+              key={form.id}
+              form={form}
+              onChange={onChange}
+              arrayName="experiences"
+            />
           )
         )}
 

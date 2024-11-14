@@ -29,9 +29,15 @@ function EducationSection({
               key={form.id}
               form={form}
               title="degree"
+              arrayName="educations"
             />
           ) : (
-            <AddEducationForm key={form.id} form={form} onChange={onChange} />
+            <AddEducationForm
+              key={form.id}
+              form={form}
+              onChange={onChange}
+              arrayName="educations"
+            />
           )
         )}
 

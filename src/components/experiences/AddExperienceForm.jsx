@@ -2,7 +2,7 @@
 import InputComponent from "../InputComponent.jsx";
 import "../../styles/AddExperienceForm.css";
 
-function AddExperienceForm({ form, onChange }) {
+function AddExperienceForm({ form, onChange, arrayName }) {
   const {
     companyName,
     positionTitle,
@@ -17,7 +17,7 @@ function AddExperienceForm({ form, onChange }) {
     <form
       className="experience-form section-form"
       id={id}
-      data-array-name="experiences"
+      data-array-name={arrayName}
       onSubmit={(e) => e.preventDefault()}
     >
       <InputComponent
