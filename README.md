@@ -32,7 +32,7 @@ npm run preview
 
 Open your browser and navigate to `http://localhost:3000` to see the application in action.  
 
-Checkout a [live preview here](https://agile-learning-institute.github.io/member-moses-cv-application)
+Checkout a [live preview here](https://cv-resume-gen-app.netlify.app/)
 
 ## Features
 
